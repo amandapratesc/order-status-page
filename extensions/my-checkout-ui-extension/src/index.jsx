@@ -29,10 +29,8 @@ import {
 
 import {useCallback, useEffect, useState} from 'react';
 
-import './style.css';
 
 render('Checkout::Dynamic::Render', () => <App />);
-
 
 function App() {
 
@@ -42,7 +40,7 @@ function App() {
   const buyerJourneyCompleted = useBuyerJourneyCompleted();
   // Returns the order if an order has been submitted, or undefined
   const order = useOrder();
- 
+
   console.log('order:', order);
   console.log('buyerJourneyCompleted::', buyerJourneyCompleted);
   console.log('teste');
@@ -50,12 +48,6 @@ function App() {
     return ( 
       <NewOrderSummary/>
     );
-  }else {
-    return (
-      <View border="base">
-        Teste
-      </View>
-    )
   }
   return null;
 }
@@ -65,9 +57,14 @@ function NewOrderSummary() {
   const { lines, shippingAddress, deliveryGroups } = useExtensionApi();
   const customer = useCustomer();
 
-  console.log('customer', customer);
+  console.log('customer:', customer);
+  console.log('lines:', lines);
 
   const order = useOrder();
+
+  const shop = useShop();
+
+  console.log('shop', shop);
 
   const [cost, setCost] = useState([]);
   const [product, setProducts] = useState([]);
@@ -193,6 +190,7 @@ function NewOrderSummary() {
           <Button
             kind='primary'
             onPress={()=> {setButtonText('The URL to customers order page must be generated!')}}
+            to={`${shop.storefrontUrl}/account`}
           >
             Ver minhas encomendas 
           </Button>

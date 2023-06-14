@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for order-status-page on 2023-06-14T10:53:33-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "order-status-page"
+primary_region = "gru"
+
+[env]
+  PORT = "8081"
+  HOST = "https://order-status-page.fly.dev"
+  SHOPIFY_API_KEY = "82d93081632c6cc40a0db24ae98f08dd"
+  SCOPES="write_products,read_checkouts,write_checkouts,read_customer_merge,write_customer_merge,read_customers,write_customers,read_draft_orders,write_draft_orders,read_orders,write_orders"
+
+[http_service]
+  internal_port = 8081
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
